@@ -1,54 +1,22 @@
-import { MoonIcon, SunIcon, HamburgerIcon } from '@chakra-ui/icons';
+import { MoonIcon, SunIcon } from '@chakra-ui/icons';
 import {
   chakra,
-  Flex,
   Link,
   Button,
   useColorMode,
   Spacer,
   ButtonGroup,
-  Drawer,
-  DrawerOverlay,
-  DrawerContent,
-  DrawerCloseButton,
-  DrawerHeader,
-  DrawerBody,
-  IconButton,
-  useDisclosure,
-  VStack,
-  Center,
   Box,
 } from '@chakra-ui/react';
 import React from 'react';
+import ResponsiveNavBar from './ResponsiveNavBar';
 
 export default function NavBar() {
-  const { isOpen, onOpen, onClose } = useDisclosure();
   const { colorMode, toggleColorMode } = useColorMode();
-
-  const handleClick = newSize => {
-    onOpen();
-  };
 
   return (
     <chakra.header id="header">
-      <Flex justifyContent="space-between" marginTop="10px" marginX="3%">
-        <IconButton
-          aria-label="Menu responsive"
-          icon={<HamburgerIcon />}
-          onClick={() => handleClick()}
-          display={{ base: 'flex', sm: 'none' }}
-          variant="ghost"
-          position="fixed"
-        />
-        <IconButton
-          aria-label="Modo oscuro"
-          variant="outline"
-          icon={colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
-          onClick={toggleColorMode}
-          display={{ base: 'flex', sm: 'none' }}
-          marginLeft="90%"
-        />
-      </Flex>
+      <ResponsiveNavBar />
       <Box
         minWidth="max-content"
         alignItems="center"
@@ -94,59 +62,6 @@ export default function NavBar() {
           </Button>
         </Box>
       </Box>
-
-      <Drawer onClose={onClose} isOpen={isOpen} size={'full'}>
-        <DrawerOverlay />
-        <DrawerContent
-          color={colorMode === 'light' ? 'black' : 'white'}
-          bg={colorMode === 'light' ? 'white' : 'black'}
-        >
-          <DrawerCloseButton />
-          <Center>
-            <DrawerHeader>Menú</DrawerHeader>
-          </Center>
-          <DrawerBody>
-            <VStack>
-              <Link href="#SobreMi">
-                <Button
-                  colorScheme="whiteAlpha"
-                  color="brand.primario"
-                  onClick={() => onClose()}
-                >
-                  Sobre mi
-                </Button>
-              </Link>
-              <Link href="#Tecnologias">
-                <Button
-                  colorScheme="whiteAlpha"
-                  color="brand.primario"
-                  onClick={() => onClose()}
-                >
-                  Tecnologías
-                </Button>
-              </Link>
-              <Link href="#Trabajos">
-                <Button
-                  colorScheme="whiteAlpha"
-                  color="brand.primario"
-                  onClick={() => onClose()}
-                >
-                  Trabajos
-                </Button>
-              </Link>
-              <Link href="#Contactame">
-                <Button
-                  colorScheme="whiteAlpha"
-                  color="brand.primario"
-                  onClick={() => onClose()}
-                >
-                  Contactame
-                </Button>
-              </Link>
-            </VStack>
-          </DrawerBody>
-        </DrawerContent>
-      </Drawer>
     </chakra.header>
   );
 }
