@@ -31,11 +31,15 @@ export default function Contactame() {
       email: '',
       descripcion: '',
     },
+
     onSubmit: values => {
       onOpen();
       emailjs
         .send('service_abutz5m', 'template_7cc28so', values)
-        .then(res => console.log(res))
+        .then(res => {
+          console.log(res);
+          formik.resetForm();
+        })
         .catch(error => console.log(error));
     },
   });
@@ -60,7 +64,7 @@ export default function Contactame() {
           </Heading>
           <form onSubmit={formik.handleSubmit}>
             <VStack spacing={4} align="flex-start">
-              <FormControl>
+              <FormControl isRequired>
                 <Input
                   id="name"
                   name="nombre"
@@ -70,7 +74,7 @@ export default function Contactame() {
                   value={formik.values.nombre}
                 />
               </FormControl>
-              <FormControl>
+              <FormControl isRequired>
                 <Input
                   id="email"
                   name="email"
@@ -80,7 +84,7 @@ export default function Contactame() {
                   value={formik.values.email}
                 />
               </FormControl>
-              <FormControl>
+              <FormControl isRequired>
                 <Textarea
                   placeholder="Agrega tu mensaje aquí"
                   id="descripcion"
