@@ -33,7 +33,7 @@ export default function Trabajos() {
           />
           <br />
           <CardTrabajo
-            link="https://pi-perros.vercel.app/"
+            link="https://www.linkedin.com/feed/update/urn:li:activity:6965367465786679297/"
             imagen={henryBank}
             titulo={'HenryBank'}
             descripcion={
